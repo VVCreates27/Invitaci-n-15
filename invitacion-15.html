@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="es-419">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación XV Años</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --olive:    #474F2E;
+    --gold:     #835F37;
+    --sage:     #6B7557;
+    --cream:    #EBE7D4;
+    --cream2:   #F5F2E8;
+    --white:    #FFFFFF;
+    --border:   #ebe7d4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #f0ece0;
+    display: flex;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── WRAPPER MÓVIL ── */
+  .invite {
+    width: 430px;
+    max-width: 100%;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 48px rgba(0,0,0,.18);
+  }
+
+  /* ══════════════════════════════
+     SECCIÓN GENÉRICA
+  ══════════════════════════════ */
+  .section {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+  }
+
+  /* fondo textura sutil */
+  .section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23474F2E' fill-opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .section-inner {
+    position: relative;
+    z-index: 2;
+    padding: 56px 43px;
+  }
+
+  /* ══════════════════════════════
+     S1 — HERO
+  ══════════════════════════════ */
+  #s-hero {
+    min-height: 648px;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  /* foto de fondo hero */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #e8e4d4 0%, #f5f2ea 100%);
+    z-index: 0;
+  }
+
+  /* imagen decorativa esquina — rombo / flor */
+  .hero-deco {
+    position: absolute;
+    top: -18px;
+    right: 58px;
+    width: 148px;
+    height: 190px;
+    opacity: .55;
+    z-index: 1;
+    background: radial-gradient(ellipse at 50% 30%, #c8bfa0 0%, transparent 70%);
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 648px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* badge MisXV */
+  .hero-badge {
+    position: absolute;
+    top: 366px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--olive);
+    letter-spacing: .05em;
+    white-space: nowrap;
+  }
+
+  /* fecha top */
+  .hero-date {
+    position: absolute;
+    top: 194px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* nombre grande */
+  .hero-name {
+    position: absolute;
+    top: 210px;
+    left: 50%;
+    transform: translateX(-calc(50%));
+    font-family: 'Playfair Display', serif;
+    font-size: 118px;
+    font-weight: 400;
+    color: var(--olive);
+    line-height: 1;
+    letter-spacing: -.01em;
+    font-style: italic;
+    white-space: nowrap;
+    left: 43px;
+  }
+
+  /* dale play tag */
+  .hero-play {
+    position: absolute;
+    bottom: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  /* video embed */
+  .hero-video-wrap {
+    position: absolute;
+    bottom: 100px;
+    left: 47px;
+    width: 336px;
+    height: 189px;
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity .5s;
+  }
+  .hero-video-wrap.loaded { opacity: 1; }
+  .hero-video-wrap iframe {
+    width: 100%; height: 100%; border: 0;
+  }
+
+  /* logo marca pequeña esquina */
+  .hero-logo {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-logo span {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--white);
+  }
+
+  /* ══════════════════════════════
+     S2 — FECHA / COUNTDOWN
+  ══════════════════════════════ */
+  #s-date {
+    min-height: 546px;
+    background: var(--white);
+  }
+
+  .date-bg-img {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #f0ece0 0%, #fff 100%);
+    opacity: .5;
+  }
+
+  .date-deco-leaf {
+    position: absolute;
+    top: -30px;
+    right: 55px;
+    width: 160px;
+    height: 208px;
+    background: linear-gradient(120deg, #bdb49e 0%, #d4cbb8 60%, transparent 100%);
+    border-radius: 60% 40% 55% 45% / 60% 40% 60% 40%;
+    transform: rotate(107deg);
+    opacity: .35;
+    z-index: 1;
+  }
+
+  .date-inner {
+    position: relative;
+    z-index: 2;
+    padding: 56px 43px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .date-month {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-top: 64px;
+  }
+
+  .date-day {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-top: 4px;
+  }
+
+  .date-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .date-dividers {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 16px 0;
+  }
+
+  .date-day-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  .date-div-line {
+    width: 2px;
+    height: 46px;
+    background: #8b8d85;
+  }
+
+  .date-hours {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+  }
+  .date-hours span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: .055em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--sage);
+    color: var(--white);
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 32px;
+    border-radius: 50px;
+    margin-top: 20px;
+    transition: background .2s;
+  }
+  .btn-primary:hover { background: var(--olive); }
+
+  .date-faltan {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--olive);
+    letter-spacing: .05em;
+    margin-top: 20px;
+  }
+
+  /* countdown */
+  .countdown {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .cd-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 56px;
+  }
+  .cd-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--olive);
+    line-height: 1;
+  }
+  .cd-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    color: var(--sage);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .cd-sep {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--gold);
+    padding-top: 2px;
+  }
+
+  /* ══════════════════════════════
+     S3 — FOTO FULL
+  ══════════════════════════════ */
+  #s-photo1 {
+    height: 373px;
+    background: linear-gradient(160deg, #c8c0a8 0%, #a89880 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #d6cebc 0%, #b8a890 100%);
+  }
+
+  .photo-placeholder-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: rgba(255,255,255,.7);
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* ══════════════════════════════
+     S4 — LUGAR
+  ══════════════════════════════ */
+  #s-place {
+    min-height: 545px;
+    background: var(--white);
+  }
+
+  .place-inner {
+    position: relative;
+    z-index: 2;
+    padding: 56px 43px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .place-icon {
+    width: 52px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .place-icon svg { width: 32px; height: 46px; fill: var(--sage); opacity: .8; }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: var(--olive);
+    letter-spacing: .051em;
+    text-align: center;
+  }
+
+  .place-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--olive);
+    letter-spacing: .15em;
+    text-align: center;
+    margin-top: 32px;
+    line-height: 1.5;
+  }
+
+  .place-address {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--olive);
+    letter-spacing: .15em;
+    text-align: center;
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+
+  /* mini mapa decorativo */
+  .mini-map {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #e8e4d8 0%, #ddd9cc 100%);
+    border-radius: 12px;
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .mini-map::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(71,79,46,.06) 28px, rgba(71,79,46,.06) 29px),
+                repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(71,79,46,.06) 28px, rgba(71,79,46,.06) 29px);
+  }
+  .mini-map-pin {
+    width: 24px;
+    height: 24px;
+    background: var(--sage);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+
+  /* ══════════════════════════════
+     S5 — DRESS CODE + REGALO + PLAYLIST
+  ══════════════════════════════ */
+  #s-extra {
+    min-height: 1046px;
+    background: var(--white);
+  }
+
+  .extra-inner {
+    position: relative;
+    z-index: 2;
+    padding: 56px 43px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .card-box {
+    width: 100%;
+    background: var(--cream);
+    border-radius: 14px;
+    border: 1.5px solid var(--border);
+    padding: 28px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 32px;
+  }
+
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--olive);
+    letter-spacing: .071em;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+
+  .card-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--olive);
+    letter-spacing: .071em;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .card-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--olive);
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    letter-spacing: .01em;
+  }
+
+  .extra-top-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--olive);
+    letter-spacing: .071em;
+    text-align: center;
+    line-height: 1.15;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  /* ══════════════════════════════
+     S6 — FOTO 2
+  ══════════════════════════════ */
+  #s-photo2 {
+    height: 459px;
+    background: linear-gradient(200deg, #b8b09a 0%, #9a9080 100%);
+    position: relative;
+  }
+
+  /* ══════════════════════════════
+     S7 — HASHTAG INSTAGRAM
+  ══════════════════════════════ */
+  #s-instagram {
+    min-height: 372px;
+    background: var(--white);
+  }
+
+  .insta-inner {
+    position: relative;
+    z-index: 2;
+    padding: 56px 43px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .insta-icon {
+    font-size: 60px;
+    margin-bottom: 8px;
+  }
+
+  .insta-hashtag {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--olive);
+    letter-spacing: .051em;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .insta-cta {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--olive);
+    text-align: center;
+    line-height: 1.55;
+    letter-spacing: .085em;
+    margin-bottom: 24px;
+  }
+
+  /* ══════════════════════════════
+     S8 — CONFIRMAR ASISTENCIA
+  ══════════════════════════════ */
+  #s-rsvp {
+    min-height: 842px;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rsvp-bg-deco {
+    position: absolute;
+    top: -200px;
+    left: -280px;
+    width: 1004px;
+    height: 1284px;
+    background: radial-gradient(ellipse, rgba(71,79,46,.05) 0%, transparent 60%);
+    transform: rotate(-63deg);
+    pointer-events: none;
+  }
+
+  .rsvp-inner {
+    position: relative;
+    z-index: 2;
+    padding: 56px 43px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rsvp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--olive);
+    letter-spacing: .051em;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .rsvp-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--olive);
+    text-align: center;
+    line-height: 1.6;
+    letter-spacing: .02em;
+    margin-bottom: 32px;
+    max-width: 320px;
+  }
+
+  /* foto RSVP */
+  .rsvp-photo {
+    width: 395px;
+    height: 462px;
+    max-width: 100%;
+    background: linear-gradient(160deg, #c0b8a4 0%, #a89c8a 100%);
+    border-radius: 4px;
+    margin: 32px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.5);
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .btn-confirm {
+    display: inline-block;
+    background: var(--sage);
+    color: var(--white);
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 48px;
+    border-radius: 50px;
+    margin-top: 8px;
+    transition: background .2s;
+  }
+  .btn-confirm:hover { background: var(--olive); }
+
+  /* ══════════════════════════════
+     S9 — CIERRE
+  ══════════════════════════════ */
+  #s-close {
+    min-height: 486px;
+    background: var(--white);
+    position: relative;
+  }
+
+  .close-inner {
+    position: relative;
+    z-index: 2;
+    padding: 56px 43px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .close-espero {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--olive);
+    letter-spacing: .051em;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+
+  .close-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 112px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--olive);
+    line-height: .9;
+    letter-spacing: -.01em;
+  }
+
+  .close-deco {
+    position: absolute;
+    bottom: 40px;
+    right: 30px;
+    width: 220px;
+    height: 280px;
+    background: linear-gradient(120deg, #c5bc9e 0%, transparent 80%);
+    border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+    transform: rotate(63deg) scaleY(-1);
+    opacity: .28;
+  }
+
+  /* ══════════════════════════════
+     UTILIDADES COMPARTIDAS
+  ══════════════════════════════ */
+  .fade-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("https://invitarteonline.com.ar/pili-premium/_assets/media/ce713b1567c68b3047c1801263b98629.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: .12;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ── REVEAL ON SCROLL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── SEPARADOR DECORATIVO ── */
+  .sep {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px auto;
+    opacity: .5;
+  }
+
+  /* ── SCROLLBAR ── */
+  .invite::-webkit-scrollbar { display: none; }
+
+  @media (max-width: 440px) {
+    .invite { width: 100%; box-shadow: none; }
+    .hero-name { font-size: 88px; }
+    .close-name { font-size: 80px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="invite">
+
+  <!-- ══ S1 HERO ══ -->
+  <section id="s-hero" class="section" style="min-height:648px; padding:0; display:flex; flex-direction:column;">
+    <div class="hero-bg"></div>
+    <div class="hero-deco"></div>
+    <div class="hero-content">
+
+      <!-- fecha arriba -->
+      <div class="hero-date" style="top:68px;">02.01.2027</div>
+
+      <!-- nombre grande -->
+      <div style="position:absolute; top:120px; left:43px; right:43px;">
+        <div style="font-family:'Playfair Display',serif; font-size:118px; font-weight:400; font-style:italic; color:var(--olive); line-height:1; letter-spacing:-.01em;">
+          <!-- ✏️ CAMBIAR NOMBRE -->
+          Sofia
+        </div>
+      </div>
+
+      <!-- badge MisXV -->
+      <div class="hero-badge" style="top:314px;">MisXV</div>
+
+      <!-- video embed -->
+      <div class="hero-video-wrap" id="heroVideo">
+        <!--
+          ✏️ REEMPLAZÁ el ID del video de YouTube en el src de abajo
+          Formato: https://www.youtube-nocookie.com/embed/VIDEOID
+        -->
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          title="Video de presentación">
+        </iframe>
+      </div>
+
+      <!-- dale play -->
+      <div class="hero-play" style="bottom:56px;">dale play!</div>
+
+      <!-- logo circular -->
+      <div class="hero-logo" style="bottom:16px; left:50%; transform:translateX(-50%);">
+        <span>XV</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ S2 FECHA / COUNTDOWN ══ -->
+  <section id="s-date" class="section" style="min-height:546px;">
+    <div class="date-bg-img"></div>
+    <div class="date-deco-leaf"></div>
+    <div class="date-inner reveal">
+
+      <div class="date-month">enero</div>
+      <div class="date-day">02</div>
+      <div class="date-year">2027</div>
+
+      <div class="date-dividers" style="margin-top:24px;">
+        <div class="date-day-name">Sábado</div>
+        <div class="date-div-line"></div>
+        <div class="date-hours">
+          <span>21:00 hs</span>
+          <span>5:00 hs</span>
+        </div>
+      </div>
+
+      <!-- botón agendar -->
+      <a class="btn-primary" href="https://calendar.google.com" target="_blank" rel="noopener noreferrer">
+        <!-- ✏️ reemplazá href con tu link de Google Calendar -->
+        agendar
+      </a>
+
+      <div class="date-faltan" style="margin-top:32px;">Faltan</div>
+
+      <!-- COUNTDOWN -->
+      <div class="countdown" id="countdown">
+        <div class="cd-unit"><span class="cd-num" id="cd-d">---</span><span class="cd-label">días</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-label">horas</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-label">min</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">seg</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ S3 FOTO FULL ══ -->
+  <section id="s-photo1" class="section" style="height:373px; padding:0;">
+    <!--
+      ✏️ Para agregar foto: reemplazá el background-color por
+      background-image: url('TU_FOTO_URL') y background-size:cover
+    -->
+    <div style="width:100%; height:100%; background:linear-gradient(160deg,#d6cebc 0%,#b8a890 100%); position:relative;">
+      <div class="photo-placeholder-text">
+        📷 foto de la festejada
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ S4 LUGAR ══ -->
+  <section id="s-place" class="section" style="min-height:545px;">
+    <div class="fade-bg" style="opacity:.08;"></div>
+    <div class="place-inner reveal">
+
+      <div class="place-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+      </div>
+
+      <div class="section-label">Lugar de Celebración</div>
+
+      <div class="sep"></div>
+
+      <!-- ✏️ CAMBIAR NOMBRE DEL SALÓN -->
+      <div class="place-name">
+        La Finca<br>Celebraciones
+      </div>
+
+      <!-- ✏️ CAMBIAR DIRECCIÓN -->
+      <div class="place-address">
+        9 de julio 820<br>San Pedro
+      </div>
+
+      <!-- mini mapa -->
+      <div class="mini-map" style="margin-top:28px;">
+        <div class="mini-map-pin"></div>
+      </div>
+
+      <!-- botón ver ubicación -->
+      <a class="btn-primary" style="margin-top:20px;"
+        href="https://maps.app.goo.gl/uP3rK8EmWupxzSju5"
+        target="_blank" rel="noopener noreferrer">
+        <!-- ✏️ reemplazá href con tu link de Google Maps -->
+        ver ubicación
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ══ S5 DRESS CODE + REGALO + PLAYLIST ══ -->
+  <section id="s-extra" class="section" style="min-height:1046px;">
+    <div class="fade-bg" style="opacity:.08;"></div>
+    <div class="extra-inner reveal">
+
+      <!-- encabezado -->
+      <div class="extra-top-text">
+        Quiero que<br>seas parte<br>de esta noche<br>única
+      </div>
+
+      <div class="sep"></div>
+
+      <!-- CARD: Dress Code -->
+      <div class="card-box">
+        <div class="card-icon">👗</div>
+        <div class="card-title">Dress Code</div>
+        <div class="card-subtitle">Elegante</div>
+        <div class="card-body">
+          <!-- ✏️ CAMBIAR DRESS CODE -->
+          (Blanco y Negro)
+        </div>
+        <a class="btn-primary" href="#" style="margin-top:0;">ver datos</a>
+      </div>
+
+      <!-- CARD: Regalo -->
+      <div class="card-box">
+        <div class="card-icon">🎁</div>
+        <div class="card-title">Regalo</div>
+        <div class="card-body">
+          Tu presencia es lo más importante,<br>
+          pero si querés hacerme un regalito<br>
+          te dejo los datos acá
+        </div>
+        <!-- ✏️ reemplazá href con link a datos bancarios o alias MP -->
+        <a class="btn-primary" href="#" style="margin-top:0;">ver datos</a>
+      </div>
+
+      <!-- CARD: Playlist -->
+      <div class="card-box">
+        <div class="card-icon">🎵</div>
+        <div class="card-title">Playlist</div>
+        <div class="card-body">
+          ¿Qué canción no puede faltar esta noche?
+        </div>
+        <!-- ✏️ reemplazá href con tu link de Google Form para sugerir canciones -->
+        <a class="btn-primary" href="https://forms.gle/bFkvsLU8ooSmTmQV6" target="_blank" rel="noopener noreferrer" style="margin-top:0;">sugerir canción</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ S6 FOTO 2 ══ -->
+  <section id="s-photo2" class="section" style="height:459px; padding:0;">
+    <!--
+      ✏️ Para agregar foto: reemplazá el background por
+      background-image: url('TU_FOTO_URL') y background-size:cover; background-position:center
+    -->
+    <div style="width:100%; height:100%; background:linear-gradient(200deg,#c0b8a4 0%,#a09080 100%); position:relative;">
+      <div class="photo-placeholder-text" style="color:rgba(255,255,255,.6);">
+        📷 segunda foto
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ S7 HASHTAG / INSTAGRAM ══ -->
+  <section id="s-instagram" class="section" style="min-height:372px;">
+    <div class="fade-bg" style="opacity:.07;"></div>
+    <div class="insta-inner reveal">
+
+      <div class="insta-icon">📸</div>
+
+      <!-- ✏️ CAMBIAR HASHTAG -->
+      <div class="insta-hashtag">#MIS15SOFIA</div>
+
+      <div class="insta-cta">
+        Subí tus fotos y videos!<br>
+        Etiquetame y usá el hashtag:
+      </div>
+
+      <!-- ✏️ reemplazá href con link de tu perfil de Instagram -->
+      <a class="btn-primary" href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+        ir a Instagram
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ══ S8 CONFIRMAR ASISTENCIA ══ -->
+  <section id="s-rsvp" class="section" style="min-height:842px;">
+    <div class="rsvp-bg-deco"></div>
+    <div class="rsvp-inner reveal">
+
+      <div class="rsvp-title">Confirmar Asistencia</div>
+
+      <div class="sep"></div>
+
+      <div class="rsvp-text">
+        ¿Venís a festejar conmigo?<br>
+        Confirmá tu asistencia y prepárate<br>
+        para una noche inolvidable
+      </div>
+
+      <!-- foto RSVP -->
+      <div class="rsvp-photo">
+        📷 foto para RSVP
+      </div>
+
+      <!-- ✏️ reemplazá href con tu link de Google Form para confirmar asistencia -->
+      <a class="btn-confirm" href="https://forms.gle/G3HsFVEPemJEFN6T6" target="_blank" rel="noopener noreferrer">
+        confirmar
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ══ S9 CIERRE ══ -->
+  <section id="s-close" class="section" style="min-height:486px; overflow:hidden;">
+    <div class="close-deco"></div>
+    <div class="close-inner reveal">
+      <div class="close-espero">Te espero</div>
+      <!-- ✏️ CAMBIAR NOMBRE -->
+      <div class="close-name">Sofia</div>
+    </div>
+  </section>
+
+</div><!-- /invite -->
+
+<script>
+  // ── COUNTDOWN ──
+  (function() {
+    // ✏️ CAMBIAR FECHA DEL EVENTO (YYYY, MM-1, DD, HH, MM)
+    const target = new Date(2027, 0, 2, 21, 0, 0);
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const now  = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('cd-d').textContent = '00';
+        document.getElementById('cd-h').textContent = '00';
+        document.getElementById('cd-m').textContent = '00';
+        document.getElementById('cd-s').textContent = '00';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000)  / 60000);
+      const s = Math.floor((diff % 60000)    / 1000);
+      document.getElementById('cd-d').textContent = pad(d);
+      document.getElementById('cd-h').textContent = pad(h);
+      document.getElementById('cd-m').textContent = pad(m);
+      document.getElementById('cd-s').textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // ── VIDEO FADE-IN ──
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var v = document.getElementById('heroVideo');
+      if (v) v.classList.add('loaded');
+    }, 600);
+  });
+
+  // ── SCROLL REVEAL ──
+  (function() {
+    var els = document.querySelectorAll('.reveal');
+    var io  = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function(el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>
